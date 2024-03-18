@@ -43,6 +43,9 @@ class SequenceTest:
     assertEquals(Cons(30, Cons(40, Nil())), concat(Nil() , l2))
 
 
-  @Test def testFlatMap(): Unit = ???
+  @Test def testFlatMap() =
+    assertEquals(Cons(11, Cons(21, Cons(31, Nil()))), flatMap(l)(v => Cons(v + 1, Nil())))
+    assertEquals(Cons(11, Cons(12, Cons(21, Cons(22, Cons(31, Cons(32, Nil())))))), flatMap(l)(v => Cons(v + 1, Cons(v + 2, Nil()))))
+    assertEquals(Nil(), flatMap(l)(v => Nil()))
 
   @Test def testMin(): Unit = ???
