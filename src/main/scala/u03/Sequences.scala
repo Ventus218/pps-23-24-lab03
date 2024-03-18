@@ -29,8 +29,8 @@ object Sequences: // Essentially, generic linkedlists
       case (Cons(firstH, firstT), Cons(secondH, secondT)) => Cons((firstH, secondH), zip(firstT, secondT))
       case _ => Nil()
 
-    def take[A](l: Sequence[A])(n: Int): Sequence[A] = (l, n) match
-      case (Cons(h, t), n) if n > 0 => Cons(h, take(t)(n - 1))
+    def take[A](l: Sequence[A])(n: Int): Sequence[A] = l match
+      case (Cons(h, t)) if n > 0 => Cons(h, take(t)(n - 1))
       case _ => Nil()
     
     def concat[A](l1: Sequence[A], l2: Sequence[A]): Sequence[A] = ???
