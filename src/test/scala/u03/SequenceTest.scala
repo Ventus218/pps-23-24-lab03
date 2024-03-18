@@ -28,7 +28,12 @@ class SequenceTest:
     assertEquals(Cons(10, Cons(20, Cons(30, Nil()))), take(l)(5))
     assertEquals(Nil(), take(Nil())(2))
   
-  @Test def testZip(): Unit = ???
+  @Test def testZip(): Unit = 
+    val list2 = Cons("a", Cons("b", Cons("c", Nil())))
+    assertEquals(Cons((10, "a"), Cons((20, "b"), Cons((30, "c"), Nil()))), zip(l , list2))
+    assertEquals(Nil(), zip(Nil(), Nil()))
+    assertEquals(Nil(), zip(Nil(), l))
+    assertEquals(Nil(), zip(l, Nil()))
 
   @Test def testConcat(): Unit = ???
 
