@@ -35,7 +35,13 @@ class SequenceTest:
     assertEquals(Nil(), zip(Nil(), l))
     assertEquals(Nil(), zip(l, Nil()))
 
-  @Test def testConcat(): Unit = ???
+  @Test def testConcat() =
+    val l1 = Cons(10, Cons(20, Nil()))
+    val l2 = Cons(30, Cons(40, Nil()))
+    assertEquals(Cons(10, Cons(20, Cons(30, Cons(40, Nil())))), concat(l1 , l2))
+    assertEquals(Cons(10, Cons(20, Nil())), concat(l1 , Nil()))
+    assertEquals(Cons(30, Cons(40, Nil())), concat(Nil() , l2))
+
 
   @Test def testFlatMap(): Unit = ???
 
