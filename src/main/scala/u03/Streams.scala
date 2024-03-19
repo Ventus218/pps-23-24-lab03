@@ -42,7 +42,9 @@ object Streams extends App :
     // slides ask for a different takeWhile but i think that's an error because of the given example:
     // "Define a function, called takeWhile(s)(n), that returns the first
     // n elements of the stream s that satisfy a given predicate."
-    def takeWhile[A](stream: Stream[A])(pred: A => Boolean): Stream[A] = ???
+    def takeWhile[A](stream: Stream[A])(pred: A => Boolean): Stream[A] = stream match
+      case Cons(h, t) if pred(h()) => cons(h(), takeWhile(t())(pred))
+      case _ => empty()
 
   end Stream
 
