@@ -7,6 +7,7 @@ import org.junit.Assert.*
 class SequenceTest:
   import u03.Sequences.*
   import Sequence.*
+  import Optionals.*
 
   val l: Sequence[Int] = Cons(10, Cons(20, Cons(30, Nil())))
 
@@ -48,4 +49,7 @@ class SequenceTest:
     assertEquals(Cons(11, Cons(12, Cons(21, Cons(22, Cons(31, Cons(32, Nil())))))), flatMap(l)(v => Cons(v + 1, Cons(v + 2, Nil()))))
     assertEquals(Nil(), flatMap(l)(v => Nil()))
 
-  @Test def testMin(): Unit = ???
+  @Test def testMin() =
+    assertEquals(Just(10), min(Cons(10, Cons(25, Cons(20, Nil())))))
+    assertEquals(Just(5), min(Cons(10, Cons(5, Cons(20, Nil())))))
+    assertEquals(Empty(), min(Nil()))
