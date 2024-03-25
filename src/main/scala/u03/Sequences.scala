@@ -2,6 +2,7 @@ package u03
 
 import u02.AnonymousFunctions.l
 import u03.Optionals.Optional
+import u03.Optionals.Optional.*
 
 object Sequences: // Essentially, generic linkedlists
   
@@ -42,14 +43,12 @@ object Sequences: // Essentially, generic linkedlists
       case _ => Nil()
 
     def min(l: Sequence[Int]): Optional[Int] =
-      def _min(l: Sequence[Int], minV: Int): Int = (l, minV) match
-        case (Cons(h, t), v) if h < v => _min(t, h)
-        case (Cons(h, t), v) if h >= v => _min(t, v)
+      def _min(l: Sequence[Int], minV: Optional[Int]): Optional[Int] = (l, minV) match
+        case (Cons(h, t), Empty()) => _min(t, Just(h))
+        case (Cons(h, t), Just(v)) => if h < v then _min(t, Just(h)) else _min(t, Just(v))
         case _ => minV
 
-      l match
-        case Cons(h, t) => Optional.Just(_min(t, h))
-        case _ => Optional.Empty()
+      _min(l, Empty())
 
 @main def trySequences =
   import Sequences.* 
